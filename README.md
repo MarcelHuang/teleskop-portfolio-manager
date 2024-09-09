@@ -21,7 +21,7 @@ To install Teleskop Portfolio Manager, follow these steps:
 
 1. Clone the repository
    ```
-   git clone https://github.com/yourusername/teleskop-portfolio-manager.git
+   git clone https://github.com/MarcelHuang/teleskop-portfolio-manager.git
    ```
 2. Navigate to the project directory
    ```
@@ -53,10 +53,6 @@ To contribute to Teleskop Portfolio Manager, follow these steps:
 5. Create the pull request.
 
 Alternatively, see the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
-
-## Contact
-
-If you want to contact me, you can reach me at `<your_email@example.com>`.
 
 ## License
 
