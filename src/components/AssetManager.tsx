@@ -82,40 +82,40 @@ const AssetManager: React.FC<AssetManagerProps> = ({ assets, onAddAsset, onEditA
       <h2 className="text-xl font-semibold mb-2">Manage Assets</h2>
       {error && <p className="text-red-500 mb-2">{error}</p>}
       <form onSubmit={handleSubmit} className="mb-4">
-        <div className="mb-2">
+        <div className="mb-2 flex flex-wrap">
           <input
             type="text"
             value={ticker}
             onChange={(e) => setTicker(e.target.value)}
             placeholder="Ticker symbol"
-            className="mr-2 p-2 border rounded"
+            className="mr-2 mb-2 p-2 border rounded"
           />
           <input
             type="number"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
             placeholder="Quantity"
-            className="mr-2 p-2 border rounded"
+            className="mr-2 mb-2 p-2 border rounded"
           />
           <input
             type="number"
             value={currentValue}
             onChange={(e) => setCurrentValue(e.target.value)}
             placeholder="Current Value"
-            className="mr-2 p-2 border rounded"
+            className="mr-2 mb-2 p-2 border rounded"
           />
           <input
             type="number"
             value={percentageChange}
             onChange={(e) => setPercentageChange(e.target.value)}
             placeholder="Percentage Change"
-            className="mr-2 p-2 border rounded"
+            className="mr-2 mb-2 p-2 border rounded"
           />
         </div>
         <div className="mb-2">
           <h3 className="text-lg font-medium mb-1">Historical Data</h3>
           {historicalData.map((point, index) => (
-            <div key={index} className="mb-2">
+            <div key={index} className="mb-2 flex">
               <input
                 type="date"
                 value={point.date}
@@ -159,25 +159,45 @@ const AssetManager: React.FC<AssetManagerProps> = ({ assets, onAddAsset, onEditA
           </button>
         )}
       </form>
-      <ul>
-        {assets.map(asset => (
-          <li key={asset.id} className="mb-2">
-            {asset.name} - Quantity: {asset.quantity}, Current Value: {asset.currentValue}, Change: {asset.percentageChange}%
-            <button
-              onClick={() => handleEdit(asset)}
-              className="ml-2 bg-yellow-500 text-white p-1 rounded"
-            >
-              Edit
-            </button>
-            <button
-              onClick={() => onDeleteAsset(asset.id)}
-              className="ml-2 bg-red-500 text-white p-1 rounded"
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="px-4 py-2 text-left">Ticker</th>
+              <th className="px-4 py-2 text-left">Quantity</th>
+              <th className="px-4 py-2 text-left">Current Value</th>
+              <th className="px-4 py-2 text-left">% Change</th>
+              <th className="px-4 py-2 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {assets.map(asset => (
+              <tr key={asset.id} className="border-b">
+                <td className="px-4 py-2">{asset.name}</td>
+                <td className="px-4 py-2">{asset.quantity}</td>
+                <td className="px-4 py-2">${asset.currentValue.toFixed(2)}</td>
+                <td className={`px-4 py-2 ${asset.percentageChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  {asset.percentageChange.toFixed(2)}%
+                </td>
+                <td className="px-4 py-2">
+                  <button
+                    onClick={() => handleEdit(asset)}
+                    className="bg-yellow-500 text-white p-1 rounded mr-2"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => onDeleteAsset(asset.id)}
+                    className="bg-red-500 text-white p-1 rounded"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
