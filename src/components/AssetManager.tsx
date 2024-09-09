@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Asset, HistoricalDataPoint } from '../types';
 
 interface AssetManagerProps {
@@ -16,6 +16,13 @@ const AssetManager: React.FC<AssetManagerProps> = ({ assets, onAddAsset, onEditA
   const [historicalData, setHistoricalData] = useState<HistoricalDataPoint[]>([]);
   const [editingAsset, setEditingAsset] = useState<Asset | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredAssets = useMemo(() => {
+    return assets.filter(asset => 
+      asset.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [assets, searchTerm]);
 
   const handleAddHistoricalDataPoint = () => {
     setHistoricalData([...historicalData, { date: '', value: 0 }]);
@@ -159,6 +166,15 @@ const AssetManager: React.FC<AssetManagerProps> = ({ assets, onAddAsset, onEditA
           </button>
         )}
       </form>
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Search assets..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="p-2 border rounded w-full"
+        />
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white">
           <thead className="bg-gray-100">
@@ -171,7 +187,7 @@ const AssetManager: React.FC<AssetManagerProps> = ({ assets, onAddAsset, onEditA
             </tr>
           </thead>
           <tbody>
-            {assets.map(asset => (
+            {filteredAssets.map(asset => (
               <tr key={asset.id} className="border-b">
                 <td className="px-4 py-2">{asset.name}</td>
                 <td className="px-4 py-2">{asset.quantity}</td>
