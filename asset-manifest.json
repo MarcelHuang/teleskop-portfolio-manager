@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/teleskop-portfolio-manager/static/css/main.c7f5f675.css",
-    "main.js": "/teleskop-portfolio-manager/static/js/main.94d9fb70.js",
+    "main.css": "/teleskop-portfolio-manager/static/css/main.09e978bf.css",
+    "main.js": "/teleskop-portfolio-manager/static/js/main.deef83ec.js",
     "static/js/453.642e1237.chunk.js": "/teleskop-portfolio-manager/static/js/453.642e1237.chunk.js",
     "index.html": "/teleskop-portfolio-manager/index.html",
-    "main.c7f5f675.css.map": "/teleskop-portfolio-manager/static/css/main.c7f5f675.css.map",
-    "main.94d9fb70.js.map": "/teleskop-portfolio-manager/static/js/main.94d9fb70.js.map",
+    "main.09e978bf.css.map": "/teleskop-portfolio-manager/static/css/main.09e978bf.css.map",
+    "main.deef83ec.js.map": "/teleskop-portfolio-manager/static/js/main.deef83ec.js.map",
     "453.642e1237.chunk.js.map": "/teleskop-portfolio-manager/static/js/453.642e1237.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c7f5f675.css",
-    "static/js/main.94d9fb70.js"
+    "static/css/main.09e978bf.css",
+    "static/js/main.deef83ec.js"
   ]
 }
